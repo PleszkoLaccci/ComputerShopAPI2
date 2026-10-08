@@ -1,0 +1,65 @@
+[
+  {
+    "ContainingType": "ComputerShopAPI.Controllers.OSystemController",
+    "Method": "AddnewOsystem",
+    "RelativePath": "osystem",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addnewosystemDTO",
+        "Type": "ComputerShopAPI.Models.DTOS.AddNewOsystemDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ComputerShopAPI.Controllers.OSystemController",
+    "Method": "GetAllOSystems",
+    "RelativePath": "osystem",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ComputerShopAPI.Controllers.OSystemController",
+    "Method": "DeleteOsystem",
+    "RelativePath": "osystem",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ComputerShopAPI.Controllers.OSystemController",
+    "Method": "UpdateOsystem",
+    "RelativePath": "osystem",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "updateosystemDTO",
+        "Type": "ComputerShopAPI.Models.DTOS.AddNewOsystemDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
