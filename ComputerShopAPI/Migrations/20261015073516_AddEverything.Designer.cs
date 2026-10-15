@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ComputerShopAPI.Migrations
 {
     [DbContext(typeof(ComputerShopDBContext))]
-    [Migration("20261008093314_InitialDB")]
-    partial class InitialDB
+    [Migration("20261015073516_AddEverything")]
+    partial class AddEverything
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,38 @@ namespace ComputerShopAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
+
+            modelBuilder.Entity("ComputerShopAPI.Models.Comp", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(36)
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Brand")
+                        .HasColumnType("varchar(37)");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<float>("Display")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Memory")
+                        .HasColumnType("int(7)");
+
+                    b.Property<Guid?>("OsId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("varchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OsId");
+
+                    b.ToTable("Comps");
+                });
 
             modelBuilder.Entity("ComputerShopAPI.Models.OSystem", b =>
                 {
@@ -47,6 +79,20 @@ namespace ComputerShopAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("OSystems");
+                });
+
+            modelBuilder.Entity("ComputerShopAPI.Models.Comp", b =>
+                {
+                    b.HasOne("ComputerShopAPI.Models.OSystem", "Os")
+                        .WithMany("Comps")
+                        .HasForeignKey("OsId");
+
+                    b.Navigation("Os");
+                });
+
+            modelBuilder.Entity("ComputerShopAPI.Models.OSystem", b =>
+                {
+                    b.Navigation("Comps");
                 });
 #pragma warning restore 612, 618
         }

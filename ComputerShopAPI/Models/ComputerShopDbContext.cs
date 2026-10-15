@@ -13,6 +13,7 @@ namespace ComputerShopAPI.Models
         }
 
         public DbSet<OSystem> OSystems { get; set; }
+        public DbSet<Comps> Comps { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

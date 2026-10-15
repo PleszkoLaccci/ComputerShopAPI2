@@ -123,3 +123,4 @@ C:\Users\pleszkol\Desktop\Backend\ComputerShopAPI\ComputerShopAPI\bin\Debug\net1
 C:\Users\pleszkol\Desktop\Backend\ComputerShopAPI\ComputerShopAPI\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\pleszkol\Desktop\Backend\ComputerShopAPI\ComputerShopAPI\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\pleszkol\Desktop\Backend\ComputerShopAPI\ComputerShopAPI\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\pleszkol\Desktop\Backend\ComputerShopAPI\ComputerShopAPI\obj\Debug\net10.0\ComputerShopAPI.sourcelink.json

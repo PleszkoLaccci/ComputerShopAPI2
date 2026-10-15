@@ -1,5 +1,47 @@
 [
   {
+    "ContainingType": "ComputerShopAPI.Controllers.ComputerController",
+    "Method": "PostComputer",
+    "RelativePath": "computers/createComputer",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addnewcomputer",
+        "Type": "ComputerShopAPI.Models.DTOS.AddNewCompDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ComputerShopAPI.Controllers.ComputerController",
+    "Method": "GetAllCompiuter",
+    "RelativePath": "computers/getAllComputers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ComputerShopAPI.Controllers.ComputerController",
+    "Method": "GetComputerById",
+    "RelativePath": "computers/getComputerById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ComputerShopAPI.Controllers.OSystemController",
     "Method": "AddnewOsystem",
     "RelativePath": "osystem",
