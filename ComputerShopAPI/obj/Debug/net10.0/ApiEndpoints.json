@@ -1,6 +1,16 @@
 [
   {
     "ContainingType": "ComputerShopAPI.Controllers.ComputerController",
+    "Method": "GetAllOsWithComputers",
+    "RelativePath": "computers/allOsWithComputers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ComputerShopAPI.Controllers.ComputerController",
     "Method": "PostComputer",
     "RelativePath": "computers/createComputer",
     "HttpMethod": "POST",
@@ -10,6 +20,27 @@
       {
         "Name": "addnewcomputer",
         "Type": "ComputerShopAPI.Models.DTOS.AddNewCompDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ComputerShopAPI.Controllers.ComputerController",
+    "Method": "DeleteComputer",
+    "RelativePath": "computers/deleteComputer",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "deletecompdto",
+        "Type": "ComputerShopAPI.Models.DTOS.DeleteCompDTO",
         "IsRequired": true
       }
     ],
@@ -37,6 +68,37 @@
         "Name": "id",
         "Type": "System.Guid",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ComputerShopAPI.Controllers.ComputerController",
+    "Method": "GetComputerWithOs",
+    "RelativePath": "computers/getComputerWithOs",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ComputerShopAPI.Controllers.ComputerController",
+    "Method": "UpdateComputer",
+    "RelativePath": "computers/updateComputer",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "updatecomdto",
+        "Type": "ComputerShopAPI.Models.DTOS.UpdateCompDTO",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

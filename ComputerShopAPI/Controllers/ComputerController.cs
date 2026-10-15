@@ -147,5 +147,20 @@ namespace ComputerShopAPI.Controllers
                 result = oswithcomps
             });
         }
+
+        [HttpGet("getComputerWithOs")]
+        public object GetComputerWithOs()
+        {
+            var computerwithos = _context.Comps
+            .Join(_context.OSystems,
+            c => c.OsId,
+            o => o.Id,
+            (c, o) => new { c, o.Name, o.Version });
+            return StatusCode(200, new
+            {
+                message = "Itt van a gep es az OS",
+                result = computerwithos
+            });
+        }
     }
 }
