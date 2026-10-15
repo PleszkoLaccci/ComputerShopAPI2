@@ -2,6 +2,7 @@
 using ComputerShopAPI.Models.DTOS;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ComputerShopAPI.Controllers
 {
@@ -133,6 +134,18 @@ namespace ComputerShopAPI.Controllers
                     message = "Nincs ilyen gep"
                 });
             }
+        }
+
+        [HttpGet("allOsWithComputers")]
+        public object GetAllOsWithComputers()
+        {
+            var oswithcomps = _context.OSystems.Include(o => o.Comps);
+
+            return StatusCode(200, new
+            {
+                message = "Itt van az osszes OS es gep",
+                result = oswithcomps
+            });
         }
     }
 }
