@@ -162,5 +162,247 @@ namespace ComputerShopAPI.Controllers
                 result = computerwithos
             });
         }
+
+        [HttpGet("/api/query/os/{id}")]
+        public object OsystemWithComputers(Guid id)
+        {
+            var os = _context.OSystems.FirstOrDefault(o => o.Id == id);
+            
+            if(os == null)
+            {
+                return StatusCode(404, new
+                {   
+                    message = "Valami nem fasza"
+                });
+            }
+
+            var computers = _context.Comps
+                .Where(c => c.OsId == id)
+                .Select(c => new { c.Brand, c.Type })
+                .ToList();
+
+            return StatusCode(200, new
+            {
+                message = "Fasza",
+                os = os,
+                result = computers
+            });
+        }
+
+
+        [HttpGet("api/query/computer/{id}")]
+        public object CompWithOs(Guid id)
+        {
+            var compswithos = _context.Comps
+                .Where(c => c.Id == id)
+                .Select(c => new
+                {
+                    c.Brand,
+                    c.Type,
+                    c.Display,
+                    c.Memory,
+                    c.CreatedTime,
+                    c.OsId,
+                    osname = c.Os.Name
+                })
+                .FirstOrDefault();
+
+            if(compswithos == null)
+            {
+                return StatusCode(404, new
+                {
+                    message = "nemjo"
+                });
+            }
+            return StatusCode(200, new
+            {
+                message = "fasza",
+                result = compswithos
+            });
+        }
+
+        [HttpGet("api/query/os-computer-count")]
+        public object OsWithCompCount()
+        {
+            var oswithcompcount = _context.OSystems
+                .Select(o => new
+                {
+                    o.Id,
+                    o.Name,
+                    o.Version,
+                    compcount = o.Comps.Count
+                })
+                .ToList();
+
+            return StatusCode(200, new
+            {
+                message = "Fasza",
+                result = oswithcompcount
+            });
+        }
+
+        [HttpGet("api/query/brand/{brand}")]    
+        public object CompBrandWithOs(string brand)
+        {
+            var compbrandwithos = _context.Comps
+                .Where(c => c.Brand == brand)
+                .Select(c => new
+                {
+                    c.Brand,
+                    c.Type,
+                    c.Display,
+                    c.Memory,
+                    c.CreatedTime,
+                    c.OsId,
+                    osname = c.Os.Name
+                });
+
+            return StatusCode(200, new
+            {
+                message = "fasza",
+                result = compbrandwithos
+            });
+        }
+
+        [HttpGet("api/query/computers-sorted")]
+        public object EveryCompWithOsBrandSorted()
+        {
+            var sorted = _context.Comps
+                .OrderBy(c => c.Brand)
+                .ThenBy(c => c.Type)
+                .Select(c => new
+                {
+                    c.Brand,
+                    c.Type,
+                    c.Display,
+                    c.Memory,
+                    c.CreatedTime,
+                    c.OsId,
+                    osname = c.Os.Name
+                })
+                .ToList();
+
+            return StatusCode(200, new
+            {
+                message = "fasza",
+                result = sorted
+            });
+        }
+
+        [HttpGet("api/query/min-display/{size}")]
+        public object CompByDisplayWithOs(double display)
+        {
+            var compbydisplay = _context.Comps
+                .Where(c => c.Display > display)
+                .Select(c => new
+                {
+                    c.Brand,
+                    c.Type,
+                    c.Display,
+                    osname = c.Os.Name
+                });
+
+            return StatusCode(200, new
+            {
+                message = "fasza",
+                result = compbydisplay
+            });
+        }
+
+
+        [HttpGet("os-stats")]
+        public object OsStats()
+        {
+            var os = _context.OSystems
+                .Select(o => new
+                {
+                    o.Id,
+                    o.Name,
+                    o.Version,
+                    Compcount = o.Comps.Count,
+                    avgmemory = o.Comps.Average(c => (double?)c.Memory),
+                    maxmemory = o.Comps.Max(c => (int?)c.Memory),
+                    avgdisplay = o.Comps.Average(c => (double?)c.Display)
+                })
+                .ToList();
+
+            return StatusCode(200, new
+            {
+                message = "fasza",
+                result = os
+            });
+        }
+
+        [HttpGet("by-os")]
+        public object CompByOsName()
+        {
+            var compbyos = _context.Comps
+                .OrderBy(c => c.Os.Name)
+                .Select(c => new
+                {
+                    c.Brand,
+                    c.Type,
+                    c.Display,
+                    c.Memory,
+                    c.CreatedTime,
+                    c.Os.Name,
+                    c.OsId
+                })
+                .ToList();
+
+            return StatusCode(200, new
+            {
+                message = "fazsa",
+                result = compbyos
+            });
+        }
+
+        [HttpGet("OsWithoutComp")]
+        public object OsWithoutComp()
+        {
+            var oswithout = _context.OSystems
+                .Where(o => !o.Comps.Any())
+                .Select(o => new
+                {
+                    o.Id,
+                    o.Name,
+                    o.Version
+                })
+                .ToList();
+            return StatusCode(200, new
+            {
+                message = "Fasza",
+                result = oswithout
+            });
+        }
+
+        [HttpGet("BiggestMemory")]
+        public object BiggestMemoryByOs()
+        {
+            var biggest = _context.OSystems
+                .Select(o => new
+                {
+                    o.Id,
+                    Osname = o.Name,
+                    o.Version,
+                    Computer = o.Comps
+                        .OrderByDescending(c => c.Memory)
+                        .Select(c => new
+                        {
+                            c.Id,
+                            c.Brand,
+                            c.Type,
+                            c.Display,
+                            c.Memory
+                        })
+                        .FirstOrDefault()
+                });
+
+            return StatusCode(200, new
+            {
+                message = "fasza",
+                result = biggest
+            });
+        } 
     }
 }
